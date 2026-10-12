@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARK ECO — The Frontier of Sustainable Construction</title>
+<meta name="description" content="Fly southern Florida. Hardened, Powered, Connected — roofing, solar, battery, EV charging, smart controls. One company. Every layer.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header id="topbar">
+  <div class="brand"><img class="brand-logo" src="assets/logo_ark.png" alt="ARK ECO logo"></div>
+  <div class="progress-track"><div id="progress-fill"></div></div>
+  <div id="region-label">The storm is coming</div>
+  <button id="menu-btn" aria-haspopup="nav">Menu</button>
+</header>
+
+<nav id="menu" hidden>
+  <a href="#" data-jump="hub">Relief Map</a>
+  <a href="#" data-jump="haven">Agricultural — Winter Haven / Arcadia</a>
+  <a href="#" data-jump="coast">Residential — Fort Myers</a>
+  <a href="#" data-jump="atlantic">Commercial — Miami Corridor</a>
+  <a href="#" data-jump="eden">Edenstead — Estero</a>
+  <a href="#" data-jump="sizer">Configure System</a>
+  <a class="menu-cta" href="tel:+12393605580">Get your free assessment — +1 (239) 360-5580</a>
+</nav>
+
+<button id="compass" title="Return to relief map" aria-label="Return to relief map" hidden>
+  <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="21" class="ring"/><path d="M24 8 L28 26 L24 22 L20 26 Z" class="needle"/><circle cx="24" cy="24" r="2" class="hub"/></svg>
+</button>
+
+<main id="world">
+
+  <!-- ACT 0 · Cinematic hook -->
+  <section class="scene" id="scene-hub" data-scene="hub">
+    <div class="canvas-pin">
+      <canvas id="seq-hub" width="1440" height="810" aria-label="Cinematic hook"></canvas>
+      <video id="hub-video" muted playsinline hidden></video>
+      <div class="stage" id="hub-stage">
+        <div class="hook-title">
+          <p class="hook-kicker">Hardened · Powered · Connected</p>
+          <img class="hook-logo" src="assets/logo_ark.png" alt="ARK ECO">
+          <p class="hook-tag">The Frontier of Sustainable Construction</p>
+          <p class="hook-line3">Bonita Springs, Florida — Master Electrical License</p>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-space" data-space="hub"></div>
+  </section>
+
+  <!-- ACT 1 · Relief relief map -->
+  <section class="scene" id="scene-map" data-scene="map">
+    <div class="canvas-pin" id="map-pin">
+      <img class="map-diorama" src="assets/hub_diorama.png" alt="Relief-model diorama of southern Florida">
+      <video class="map-ambient" muted loop playsinline hidden preload="none" src="assets/ambient_map.mp4"></video>
+      <svg id="map" viewBox="0 0 1000 700" role="img" aria-label="Stylized relief map of southern Florida">
+        <g class="beacons">
+          <g class="beacon" data-region="haven" tabindex="0" role="button" aria-label="ARK ECO Agricultural — Winter Haven / Arcadia">
+            <circle class="ring-base" cx="540" cy="258" r="10"/><circle class="ring" cx="540" cy="258" r="16"/><circle class="pulse" cx="540" cy="258" r="16"/>
+            <text x="560" y="254" class="beacon-title">ARK ECO Agricultural</text><text x="560" y="270" class="beacon-sub">Winter Haven / Arcadia</text>
+          </g>
+          <g class="beacon" data-region="coast" tabindex="0" role="button" aria-label="ARK ECO Residential — Fort Myers">
+            <circle class="ring-base" cx="548" cy="470" r="10"/><circle class="ring" cx="548" cy="470" r="16"/><circle class="pulse" cx="548" cy="470" r="16"/>
+            <text x="568" y="466" class="beacon-title">ARK ECO Residential</text><text x="568" y="482" class="beacon-sub">Fort Myers Metro</text>
+          </g>
+          <g class="beacon" data-region="atlantic" tabindex="0" role="button" aria-label="ARK ECO Commercial — Miami Corridor">
+            <circle class="ring-base" cx="718" cy="440" r="10"/><circle class="ring" cx="718" cy="440" r="16"/><circle class="pulse" cx="718" cy="440" r="16"/>
+            <text x="690" y="418" class="beacon-title">ARK ECO Commercial</text><text x="690" y="434" class="beacon-sub">Miami Corridor</text>
+          </g>
+          <g class="beacon" data-region="eden" tabindex="0" role="button" aria-label="ARK ECO Edenstead — east of Alico Road, Estero">
+            <circle class="ring-base" cx="552" cy="508" r="10"/><circle class="ring" cx="552" cy="508" r="16"/><circle class="pulse" cx="552" cy="508" r="16"/>
+            <text x="572" y="522" class="beacon-title">ARK ECO Edenstead</text><text x="572" y="538" class="beacon-sub">East of Alico Rd, Estero</text>
+          </g>
+        </g>
+        <g class="map-hud">
+          <text x="40" y="640" class="hud-big">SOUTHERN FLORIDA</text>
+          <text x="40" y="660" class="hud-small">A living relief model. Pick a beacon.</text>
+        </g>
+      </svg>
+      <div class="hud-card" id="map-intro">
+        <p class="hud-head">Hardened. Powered. Connected.</p>
+        <p class="hud-body">Roofing, solar, battery, EV charging, smart controls — one company, every layer. Broward, Collier, Lee, Hendry, and Palm Beach Counties.</p>
+      </div>
+    </div>
+    <div class="scroll-space" data-space="map"></div>
+  </section>
+
+  <!-- ACT 2–5 · Regional legs (built by data) -->
+  <section class="scene" id="scene-dive" data-scene="dive" hidden>
+    <div class="canvas-pin">
+      <canvas id="seq-dive" width="1440" height="810" aria-label="Dive sweep"></canvas>
+      <video id="dive-video" muted loop playsinline hidden></video>
+      <div class="stage" id="dive-stage"></div>
+    </div>
+    <div class="scroll-space" data-space="dive"></div>
+  </section>
+
+  <div id="legs"></div>
+
+  <!-- ACT 8 · Conversion floor -->
+  <footer class="scene" id="floor" data-scene="floor">
+    <div class="floor-inner">
+      <img class="floor-logo" src="assets/logo_ark.png" alt="ARK ECO logo">
+      <p class="floor-kicker">ARK ECO — The Frontier of Sustainable Construction</p>
+      <h2 class="floor-title">Every piece. Every county. One system.</h2>
+      <p class="floor-body">Broward, Collier, Lee, Hendry, and Palm Beach Counties. Master Electrical License. 30-year warranty solutions. Financing partners on secured and non-secured options, with government tax incentives.</p>
+      <div class="badges">
+        <span class="badge">Financing partners — secured &amp; non-secured</span>
+        <span class="badge">30-year warranty solutions</span>
+        <span class="badge">Master Electrical License</span>
+      </div>
+      <a class="floor-cta" href="tel:+12393605580">Get your free assessment — +1 (239) 360-5580</a>
+      <p class="floor-tone">"It's not what you do but how you do it."</p>
+    </div>
+  </footer>
+
+</main>
+
+<!-- Inspection modal -->
+<aside id="inspect" hidden aria-modal="true" role="dialog">
+  <div class="inspect-panel">
+    <button class="inspect-close" aria-label="Close">×</button>
+    <p class="inspect-kicker" id="inspect-kicker">Deep inspection</p>
+    <h3 id="inspect-title"></h3>
+    <div class="inspect-view">
+      <div id="inspect-3d" class="inspect-3d" hidden></div>
+      <svg id="explode-svg" viewBox="0 0 600 340"></svg>
+      <input type="range" id="explode-range" min="0" max="100" value="60" aria-label="Explosion slider">
+    </div>
+    <ul id="inspect-parts"></ul>
+  </div>
+</aside>
+
+<!-- Sizer drawer -->
+<aside id="sizer" aria-label="System sizer">
+  <div class="sizer-panel">
+    <button class="sizer-close" aria-label="Close sizer">×</button>
+    <p class="sizer-kicker">System sizer</p>
+    <h3>Configure your system</h3>
+    <p class="sizer-hint">Pick exactly the loads you want to hold. The system sizes itself — concept estimate only, not a quote.</p>
+    <div id="sizer-step1">
+      <label class="sizer-label" for="profile">Property type</label>
+      <select id="profile">
+        <option value="residential">Home</option>
+        <option value="agricultural">Farm / grove / packhouse</option>
+        <option value="commercial">Store / building</option>
+        <option value="edenstead">Off-grid homestead</option>
+      </select>
+      <label class="sizer-label" for="visitor-text">Describe your property (optional)</label>
+      <textarea id="visitor-text" rows="2" placeholder="e.g. Citrus grove outside Arcadia with a cold store"></textarea>
+      <p id="semantic-note" class="semantic-note"></p>
+    </div>
+    <label class="sizer-label">Critical loads</label>
+    <div id="loads" class="loads"></div>
+    <label class="sizer-label" for="autonomy">Autonomy — <span id="autonomy-days">3</span> days</label>
+    <input type="range" id="autonomy" min="1" max="7" step="1" value="3">
+    <div class="scale-ticks"><span>24h</span><span>72h</span><span>168h</span></div>
+    <div id="spec" class="spec"></div>
+    <a class="sizer-cta" href="tel:+12393605580">Lock in your assessment — +1 (239) 360-5580</a>
+  </div>
+</aside>
+
+<script src="js/data.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/sizer.js"></script>
+<script src="js/vendor/arkviewer.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

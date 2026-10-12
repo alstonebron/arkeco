@@ -1,0 +1,394 @@
+/* ARK ECO — design system. Dark #261d26-class base, ARK gold #ffc20e, cyan #4fd8e0.
+   Hairline gold rules, glass panels, mono labels. */
+
+:root{
+  --bg:#261d26; --bg2:#1d151d; --panel:#322732; --hair:#4a3a4a;
+  --gold:#ffc20e; --cyan:#4fd8e0; --emerald:#3fd8a0;
+  --ink:#f4ecf4; --muted:#b9aab9;
+  --topbar-h:56px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{scroll-behavior:auto}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:"Segoe UI",system-ui,sans-serif;line-height:1.55;
+  overflow-x:hidden;
+}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+a{color:var(--gold);text-decoration:none}
+canvas{display:block;width:100%;height:100%}
+
+/* ---------- topbar ---------- */
+#topbar{
+  position:fixed;inset:0 0 auto 0;height:var(--topbar-h);z-index:60;
+  display:flex;align-items:center;gap:16px;padding:0 20px;
+  background:linear-gradient(180deg,rgba(29,21,29,.92),rgba(29,21,29,.78));
+  border-bottom:1px solid var(--hair);backdrop-filter:blur(10px);
+}
+.brand{display:flex;align-items:center;gap:10px;white-space:nowrap}
+.brand-logo{height:34px;width:auto;display:block}
+.progress-track{flex:1;height:2px;background:var(--hair)}
+#progress-fill{height:100%;width:0;background:var(--gold)}
+#region-label{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+#menu-btn{
+  border:1px solid var(--hair);padding:6px 16px;font-size:12px;
+  letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;
+}
+#menu-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ---------- menu ---------- */
+#menu{
+  position:fixed;top:var(--topbar-h);right:12px;z-index:59;
+  display:flex;flex-direction:column;min-width:280px;
+  background:rgba(29,21,29,.97);border:1px solid var(--hair);
+  padding:8px;
+}
+#menu a{color:var(--ink);padding:10px 14px;font-size:14px;border-bottom:1px solid rgba(74,58,74,.4)}
+#menu a:hover{color:var(--gold)}
+#menu .menu-cta{color:var(--gold);font-weight:600;border-bottom:none}
+@media(max-width:640px){#menu{left:12px;right:12px}}
+
+/* ---------- compass ---------- */
+#compass{position:fixed;right:18px;bottom:18px;z-index:58;width:48px;height:48px}
+#compass svg{width:100%;height:100%}
+#compass .ring{fill:none;stroke:var(--gold);stroke-width:1.5;opacity:.85}
+#compass .needle{fill:var(--gold)}
+#compass .hub{fill:var(--cyan)}
+#compass:hover .needle{fill:var(--cyan)}
+
+/* ---------- scenes ---------- */
+.scene{position:relative}
+.canvas-pin{
+  position:sticky;top:0;height:100vh;
+  overflow:hidden;background:var(--bg2);
+}
+.scroll-space{width:100%}
+.stage{position:absolute;inset:0;pointer-events:none}
+
+/* hook title */
+.hook-title{
+  position:absolute;left:6vw;bottom:12vh;z-index:10;pointer-events:none;
+  opacity:0;transition:opacity .8s ease;
+}
+.hook-title.on{opacity:1}
+.hook-kicker{
+  font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:12px;
+}
+.hook-logo{height:clamp(64px,9vw,120px);width:auto;display:block;margin:0 0 12px;filter:drop-shadow(0 4px 24px rgba(20,12,20,.6))}
+.hook-tag{
+  color:var(--gold);font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+}
+.hook-line3{
+  color:var(--ink);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  margin-top:10px;opacity:.75;
+}
+
+/* ambient hook */
+#hub-video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;z-index:1;
+}
+#seq-hub{position:absolute;inset:0}
+#scene-hub .stage{z-index:2}
+
+.floor-logo{height:64px;width:auto;display:block;margin:0 auto 18px}
+.hook-tag{
+  color:var(--gold);font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+}
+
+/* ambient dive travel */
+#dive-video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;z-index:1;
+}
+#seq-dive{position:absolute;inset:0}
+#scene-dive .stage{z-index:2}
+.segment video.ambient{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;z-index:1;
+}
+
+/* floating copy docks */
+.copy-dock{
+  position:absolute;max-width:460px;z-index:10;
+  background:rgba(29,21,29,.72);border:1px solid var(--hair);
+  border-left:3px solid var(--gold);
+  padding:22px 26px;backdrop-filter:blur(8px);
+  opacity:0;transform:translateY(14px);
+  transition:opacity .5s ease,transform .5s ease;
+}
+.copy-dock.on{opacity:1;transform:none}
+.copy-dock.right{right:6vw}
+.copy-dock.left{left:6vw}
+.copy-dock h3{color:var(--gold);font-size:22px;margin-bottom:8px}
+.copy-dock p{color:var(--ink);font-size:15px}
+.copy-dock .seg-kicker{
+  font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--cyan);margin-bottom:10px;
+}
+@media(max-width:640px){
+  .copy-dock{left:5vw!important;right:5vw!important;max-width:none;bottom:8vh}
+}
+
+/* overlay pins & cards inside docks */
+.overlay-row{margin-top:14px;pointer-events:auto;display:flex;gap:8px;flex-wrap:wrap}
+.pin-btn,.card-btn{
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid var(--hair);padding:5px 12px;color:var(--muted);
+}
+.pin-btn:hover,.card-btn:hover{border-color:var(--gold);color:var(--gold)}
+.credential{font-size:12px;color:var(--cyan);margin-top:10px;display:none}
+.credential.on{display:block}
+
+/* checkpoints */
+.checkpoint{
+  position:absolute;left:6vw;right:6vw;bottom:10vh;z-index:12;
+  text-align:center;opacity:0;transition:opacity .5s ease;
+  pointer-events:none;
+}
+.checkpoint.on{opacity:1;pointer-events:auto}
+.checkpoint .badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:12px 0 16px}
+.badge{
+  font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);
+  border:1px solid var(--gold);padding:5px 14px;background:rgba(29,21,29,.7);
+}
+.checkpoint .cp-cta{
+  display:inline-block;font-weight:600;color:var(--gold);
+  border:1px solid var(--gold);padding:10px 26px;background:rgba(29,21,29,.8);
+}
+.checkpoint .cp-cta:hover{background:var(--gold);color:var(--bg)}
+
+/* ---------- map ---------- */
+#map{width:100%;height:100%;display:block;position:relative;z-index:2}
+.map-diorama{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;z-index:1;
+  animation:slow-drift 24s ease-in-out infinite alternate;
+}
+.map-ambient{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;z-index:1;
+  opacity:0;transition:opacity 1.2s ease;
+}
+.map-ambient.on{opacity:1}
+@keyframes slow-drift{
+  from{transform:scale(1.06) translate(0.6%, 0.4%)}
+  to{transform:scale(1.12) translate(-0.6%, -0.4%)}
+}
+.terrain .coast{fill:url(#land);fill-opacity:.5;stroke:var(--cyan);stroke-width:1.2;opacity:.96}
+.sea-bg{fill:url(#glow-b);opacity:.10}
+.keys line{stroke:var(--cyan);stroke-width:2;opacity:.8}
+.terrain .lake{fill:#2f5866;fill-opacity:.5;stroke:var(--cyan);stroke-width:1;opacity:.95}
+.corridors path{fill:none;stroke:var(--gold);stroke-width:1.4;stroke-dasharray:3 6;opacity:.8;animation:dash 6s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-90}}
+.map-label,.map-hud text,.beacon text{fill:var(--muted);font-family:"Segoe UI",system-ui,sans-serif}
+.map-label{font-size:13px;font-style:italic;text-anchor:middle}
+.hud-big{fill:var(--ink)!important;font-size:26px!important;letter-spacing:.28em}
+.hud-small{font-size:14px!important}
+.beacon{cursor:pointer}
+.beacon .ring-base{fill:var(--gold)}
+.beacon .ring{fill:none;stroke:var(--gold);stroke-width:1.5;opacity:.7}
+.beacon .pulse{fill:none;stroke:var(--gold);stroke-width:1;opacity:0;transform-origin:center}
+.beacon:hover .pulse,.beacon:focus .pulse{animation:beacon-pulse 1.8s ease-out infinite}
+@keyframes beacon-pulse{0%{opacity:.8;transform:scale(1)}100%{opacity:0;transform:scale(2.4)}}
+.beacon-title{fill:var(--ink)!important;font-size:16px!important;font-weight:600}
+.beacon-sub{font-size:13px!important}
+.beacon:hover .beacon-title,.beacon:focus .beacon-title{fill:var(--gold)!important}
+@media(max-width:760px){
+  .beacon-title{font-size:13px!important}.beacon-sub{font-size:10px!important}
+  .hud-big{font-size:18px!important}
+  .map-label{font-size:10px}
+}
+
+.hud-card{
+  position:absolute;left:6vw;top:10vh;max-width:420px;z-index:11;
+  background:rgba(29,21,29,.72);border:1px solid var(--hair);
+  border-left:3px solid var(--gold);padding:20px 24px;backdrop-filter:blur(8px);
+}
+.hud-head{color:var(--gold);font-size:20px;margin-bottom:8px}
+.hud-body{color:var(--ink);font-size:14px}
+
+/* ---------- regional leg structure ---------- */
+.leg-title-bar{
+  position:sticky;top:var(--topbar-h);z-index:14;
+  display:flex;align-items:center;gap:14px;
+  padding:14px 20px;background:linear-gradient(180deg,rgba(29,21,29,.9),transparent);
+}
+.leg-title-bar .leg-no{color:var(--cyan);font-size:11px;letter-spacing:.26em;text-transform:uppercase}
+.leg-title-bar .leg-name{color:var(--gold);font-size:18px;font-weight:600;letter-spacing:.06em}
+.segment{position:relative;height:260vh}
+.segment .canvas-pin{height:100vh;z-index:1}
+.gate-space{height:60vh}
+
+/* ---------- leg gates: journey stops over a full-bleed frame, the logo fills, then invites the next scroll ---------- */
+.leg-gate{
+  position:sticky;top:0;height:100vh;z-index:5;
+  display:flex;align-items:center;justify-content:center;
+  background-color:var(--bg2);
+  opacity:0;transition:opacity .6s ease;pointer-events:none;
+}
+.gate-bg{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;z-index:0;
+  transform:scale(1.06);
+  animation:gate-drift 18s ease-in-out infinite alternate;
+}
+@keyframes gate-drift{
+  from{transform:scale(1.04) translate(0.4%, 0.2%)}
+  to{transform:scale(1.10) translate(-0.4%, -0.2%)}
+}
+.leg-gate::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(80% 80% at 50% 50%, rgba(29,21,29,.62), rgba(29,21,29,.88) 70%);
+  z-index:1;
+}
+.leg-gate .gate-inner{position:relative;z-index:2}
+.leg-gate.on{opacity:1}
+.gate-inner{text-align:center;transform:translateY(12px);transition:transform .7s ease}
+.leg-gate.on .gate-inner{transform:none}
+.gate-mark{position:relative;display:inline-block;width:clamp(180px,26vw,340px);margin-bottom:26px}
+.gate-logo-base{display:block;width:100%;opacity:.14;filter:saturate(0)}
+.gate-logo-fill{
+  position:absolute;inset:0;width:100%;opacity:0;
+  filter:drop-shadow(0 0 22px rgba(255,194,14,.5));
+  transition:opacity 1.6s ease;
+}
+.leg-gate.filled .gate-logo-fill{opacity:1}
+.gate-sweep{
+  position:absolute;top:0;bottom:0;width:34%;left:-40%;
+  background:linear-gradient(90deg,transparent,rgba(255,194,14,.35),transparent);
+  transform:skewX(-12deg);opacity:0;
+}
+.leg-gate.filled .gate-sweep{animation:gateSweep 2.6s ease infinite;opacity:1}
+@keyframes gateSweep{0%{left:-40%}60%{left:110%}100%{left:110%}}
+.gate-kicker{
+  font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--cyan);
+  margin-bottom:12px;
+}
+.gate-continue{
+  color:var(--gold);font-size:clamp(22px,3.4vw,34px);font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.gate-arrow{
+  width:1px;height:64px;margin:20px auto 0;position:relative;overflow:hidden;
+  background:linear-gradient(180deg,transparent,var(--gold));
+}
+.gate-arrow::after{
+  content:"";position:absolute;left:-4px;top:0;width:9px;height:9px;
+  border-right:1px solid var(--gold);border-bottom:1px solid var(--gold);
+  transform:rotate(45deg);animation:gateArrow 2s ease-in-out infinite;
+}
+@keyframes gateArrow{0%{top:-12px}70%,100%{top:64px}}
+
+/* ---------- floor ---------- */
+#floor{background:var(--bg2);border-top:1px solid var(--gold);padding:14vw 6vw 10vw}
+.floor-inner{max-width:760px;margin:0 auto;text-align:center}
+.floor-kicker{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--cyan)}
+.floor-title{color:var(--gold);font-size:clamp(28px,5vw,44px);margin:16px 0}
+.floor-body{color:var(--ink);margin-bottom:20px}
+#floor .badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:16px 0 24px}
+.floor-cta{
+  display:inline-block;font-weight:600;color:var(--bg);background:var(--gold);
+  padding:14px 34px;font-size:16px;
+}
+.floor-cta:hover{background:var(--ink)}
+.floor-tone{margin-top:22px;color:var(--muted);font-style:italic}
+
+/* ---------- inspect ---------- */
+#inspect{
+  position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;
+  background:rgba(29,21,29,.6);backdrop-filter:blur(4px);
+}
+.inspect-panel{
+  width:min(680px,92vw);max-height:90vh;overflow:auto;
+  background:var(--bg);border:1px solid var(--gold);padding:28px 30px;position:relative;
+}
+.inspect-close{position:absolute;top:10px;right:14px;font-size:26px;color:var(--muted)}
+.inspect-close:hover{color:var(--gold)}
+.inspect-kicker{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--cyan)}
+#inspect-title{color:var(--gold);font-size:24px;margin:6px 0 14px}
+.inspect-view{background:var(--bg2);border:1px solid var(--hair);padding:12px}
+.inspect-3d{width:100%;height:340px;border-radius:6px;overflow:hidden;background:radial-gradient(ellipse at 50% 70%,#1a1522 0%,#0c0a10 100%);cursor:grab}
+.inspect-3d:active{cursor:grabbing}
+#explode-svg{width:100%;height:auto}
+#explode-range{width:100%;margin-top:8px;accent-color:var(--gold)}
+#inspect-parts{margin-top:14px;list-style:none}
+#inspect-parts li{padding:9px 0;border-bottom:1px solid var(--hair);font-size:14px}
+#inspect-parts li b{color:var(--gold);font-weight:600}
+#inspect-parts li span{color:var(--muted);display:block;font-size:13px}
+#inspect-parts li li{border-bottom:none;padding:2px 0}
+#inspect-parts li ul{list-style:none;margin-top:4px}
+#inspect-parts li li::before{content:"— ";color:var(--cyan)}
+
+/* ---------- sizer ---------- */
+#sizer{position:fixed;inset:0;z-index:70;pointer-events:none}
+#sizer .sizer-panel{
+  position:absolute;top:0;right:0;height:100vh;width:min(440px,94vw);
+  background:rgba(29,21,29,.98);border-left:1px solid var(--gold);
+  padding:24px 26px;overflow:auto;pointer-events:auto;
+  transform:translateX(102%);transition:transform .45s cubic-bezier(.22,.9,.3,1);
+}
+#sizer.on .sizer-panel{transform:none}
+.sizer-close{position:absolute;top:10px;right:14px;font-size:26px;color:var(--muted)}
+.sizer-close:hover{color:var(--gold)}
+.sizer-kicker{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--cyan)}
+#sizer h3{color:var(--gold);font-size:24px;margin:6px 0 8px}
+.sizer-hint{color:var(--muted);font-size:13px;margin-bottom:14px}
+.sizer-label{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin:14px 0 6px}
+#profile,#visitor-text{
+  width:100%;background:var(--bg2);color:var(--ink);
+  border:1px solid var(--hair);padding:9px 11px;font:inherit;
+}
+#visitor-text{resize:vertical}
+.semantic-note{font-size:12px;color:var(--emerald);margin-top:5px;min-height:14px}
+.loads{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px}
+@media(max-width:400px){.loads{grid-template-columns:1fr}}
+.load-row{display:flex;align-items:center;gap:8px;font-size:13.5px;padding:3px 0}
+.load-row input{accent-color:var(--gold)}
+#autonomy{width:100%;accent-color:var(--gold)}
+.scale-ticks{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.spec{background:var(--bg2);border:1px solid var(--hair);border-left:3px solid var(--gold);padding:16px 18px;margin:16px 0}
+.spec .row{display:flex;justify-content:space-between;gap:12px;padding:5px 0;font-size:14px}
+.spec .row+.row{border-top:1px solid rgba(74,58,74,.4)}
+.spec .row b{color:var(--gold);font-weight:600}
+.spec .note{font-size:11.5px;color:var(--muted);margin-top:8px}
+.spec .row.warn b{color:var(--emerald)}
+.sizer-cta{display:inline-block;font-weight:600;color:var(--bg);background:var(--gold);padding:12px 24px;width:100%;text-align:center;margin-top:6px}
+.sizer-cta:hover{background:var(--ink)}
+
+/* ---------- helpers ---------- */
+.fade-in{animation:fade-in .6s ease both}
+@keyframes fade-in{from{opacity:0}to{opacity:1}}
+
+/* ---------- narrative automation layer ---------- */
+/* territory arrival: the diorama unfolds itself — 3D perspective entrance, no scroll needed */
+.scene.unfold .canvas-pin{
+  transform-origin:50% 80%;
+  animation:unfold-in 2.3s cubic-bezier(.2,.85,.25,1) both;
+}
+@keyframes unfold-in{
+  0%{transform:perspective(1400px) rotateX(38deg) scale(.68) translateY(14%);opacity:0}
+  45%{opacity:1}
+  100%{transform:none;opacity:1}
+}
+/* hold band: the stage breathes while the loop plays (Ken Burns drift) */
+.scene.unfold .canvas-pin::after{content:none}
+/* inspection chips cascade when the copy dock rises */
+.copy-dock .pin-btn{
+  opacity:0;transform:translateY(10px);
+  transition:opacity .5s ease,transform .5s ease,border-color .2s,color .2s;
+  transition-delay:calc(var(--i,0)*110ms);
+}
+.copy-dock.on .pin-btn{opacity:1;transform:none}
+.copy-dock:not(.on) .pin-btn{transition-delay:0ms}
+/* beacons call to you — pulses on, staggered, not hover-only */
+.beacon .pulse{animation:beacon-pulse 2.6s ease-out infinite}
+.beacon:nth-of-type(2) .pulse{animation-delay:.65s}
+.beacon:nth-of-type(3) .pulse{animation-delay:1.3s}
+.beacon:nth-of-type(4) .pulse{animation-delay:1.95s}
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+}
